@@ -1,8 +1,18 @@
-package com.air.drive.network.model;
+package com.air.drive.device.model;
 
 public class DeviceModel {
     String ip;
     String deviceName;
+
+    public String getDeviceType() {
+        return deviceType;
+    }
+
+    public void setDeviceType(String deviceType) {
+        this.deviceType = deviceType;
+    }
+
+    String deviceType;
 
     public DeviceModel getDeviceModel() {
         return deviceModel;
@@ -38,10 +48,11 @@ public class DeviceModel {
     }
 
     String deviceOsName;
-    public DeviceModel(String ip, String deviceName, String deviceOsName) {
+    public DeviceModel(String ip, String deviceName, String deviceOsName,String deviceType) {
         this.ip = ip;
         this.deviceName = deviceName;
         this.deviceOsName = deviceOsName;
+        this.deviceType=deviceType;
         this.deviceModel=this;
     }
 
