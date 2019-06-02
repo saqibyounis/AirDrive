@@ -12,7 +12,7 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 
 public class FTPClientConfiguration {
-
+//TODO ftpserver remaining
     FTPClient ftp = null;
 
     public FTPClientConfiguration(String host, String user, String pwd) throws Exception{
