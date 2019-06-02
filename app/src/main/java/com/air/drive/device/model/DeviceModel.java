@@ -1,5 +1,7 @@
 package com.air.drive.device.model;
 
+import com.google.gson.Gson;
+
 public class DeviceModel {
     String ip;
     String deviceName;
@@ -56,6 +58,12 @@ public class DeviceModel {
         this.deviceModel=this;
     }
 
+   public String getJson(){
+       Gson gson=new Gson();
 
+       String json=gson.toJson(this);
 
+       return json;
+
+    }
 }
