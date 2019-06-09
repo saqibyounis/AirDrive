@@ -22,11 +22,15 @@ public class UDPClient {
     public int range=255;
     List<DeviceModel> deviceModels=new ArrayList<>();
     List<OutgoingConnectionListener> outgoingConnectionListeners=new ArrayList<>();
-    public void startUdpClient(String ip) throws IOException, JSONException {
+    public void startUdpClient(String ip,String last) throws IOException, JSONException {
         clientSocket=new DatagramSocket();
+             clientSocket.setSoTimeout(2000);
+        ///for (int i=0;i<=255;i++){
 
-        for (int i=0;i<=255;i++){
-             InetAddress IPAddress = InetAddress.getByName(ip+""+i);
+try {
+
+             InetAddress IPAddress = InetAddress.getByName(ip+""+last);
+            System.out.println("IP ADDRESS"+IPAddress);
              byte[] sendData = new byte[1024];
              byte[] receiveData = new byte[1024];
              String json= DeviceModel.deviceModel.getJson();
@@ -39,12 +43,19 @@ public class UDPClient {
             JSONObject jsonObject=new JSONObject(new String(receivePacket.getData()));
             DeviceModel deviceModel=new DeviceModel(jsonObject.getString("ip"),jsonObject.getString("deviceName"),jsonObject.getString("deviceOsName"),jsonObject.getString("deviceType"));
             deviceModels.add(deviceModel);
+    System.out.println("FOUND");
             for (OutgoingConnectionListener outgoing:outgoingConnectionListeners) {
+                System.out.println("in ni");
                 outgoing.foundAClient(deviceModel);
             }
+}catch (Exception ex){
+    System.out.println("NO FOUND");
+//continue;
+
+}
 
 
-         }
+         //}
         clientSocket.close();
 
     }

@@ -1,5 +1,6 @@
 package com.air.drive;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
        tv=findViewById(R.id.tv);
         DeviceDetails.initializeDeviceDetail(this,this);
         tv.setText(""+ RemoveIpAddressEnd.getIp(DeviceModel.deviceModel.getIp()));
-
+        System.out.println("IPADDRESS "+DeviceModel.deviceModel.getIp());
+        System.out.println("LAST IP "+RemoveIpAddressEnd.getLastIp(DeviceModel.deviceModel.getIp()));
+        startActivity(new Intent(this,SendAndReceiveAct.class ));
     }
 }

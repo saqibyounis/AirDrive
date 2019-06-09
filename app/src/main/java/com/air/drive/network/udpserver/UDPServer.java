@@ -31,8 +31,11 @@ public class UDPServer {
 
     while(RUNNER_FLAG)
     {
+
+        System.out.println("Runnign server");
         DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
         datagramSocket.receive(receivePacket);
+        System.out.println("INCOME");
         //String sentence = new String( receivePacket.getData());
         JSONObject jsonObject=new JSONObject(new String(receivePacket.getData()));
         DeviceModel deviceModel=new DeviceModel(jsonObject.getString("ip"),jsonObject.getString("deviceName"),jsonObject.getString("deviceOsName"),jsonObject.getString("deviceType"));
@@ -46,8 +49,8 @@ public class UDPServer {
         for (IncommingConnectionListener incommingConnectionListener: incommingConnectionListeners) {
             incommingConnectionListener.getAConnectoin(deviceModel);
         }
-
-    }
+        System.out.println("found sonedsfsaf");
+   }
 
 
 }
